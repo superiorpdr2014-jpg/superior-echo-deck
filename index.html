@@ -433,6 +433,11 @@
   .srow .sfill{height:100%; background:linear-gradient(90deg,#8E1822,#E0616B); border-radius:6px}
   .srow .sv{font-weight:900; color:var(--red-soft); font-variant-numeric:tabular-nums; font-size:clamp(13px,1.3vw,16px); text-align:right}
   .pdbrow{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(16px,2.2vw,32px); align-items:start}
+  .exrow{display:flex;align-items:center;gap:clamp(10px,1.4vw,18px);background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:clamp(9px,1.4vh,15px) clamp(13px,1.5vw,20px)}
+  .exrow .ext{flex:0 0 auto;min-width:clamp(72px,7vw,104px);font-weight:800;color:var(--alert);font-size:clamp(12px,1.05vw,14px);letter-spacing:.02em}
+  .exrow .exd{flex:1;font-size:clamp(12px,1.2vw,16px);color:var(--ink)}
+  .exrow .pill{flex:0 0 auto;font-size:clamp(10px,1vw,12.5px)}
+  @media(max-width:640px){ .exrow{flex-wrap:wrap} .exrow .exd{flex:1 1 100%;order:3} }
 </style>
 </head>
 <body>
@@ -720,90 +725,88 @@
     <div style="margin-top:clamp(10px,1.8vh,18px)"><span class="tag"><span class="dot"></span>核心精神：把「服務有沒有做好」變成能比較、能追蹤的分數</span></div>
   </section>
 
-  <!-- 6d KPI item analysis -->
+  <!-- 6d KPI 指標 01 未處理派單 -->
   <section class="slide">
-    <div class="head">
-      <div class="eyebrow">各項評分分析 · 每個數字在看什麼</div>
-      <h2>七個指標，對應服務的七個關卡</h2>
-    </div>
-    <div class="tblwrap">
-      <table class="tbl">
-        <thead><tr>
-          <th style="min-width:120px">指標</th>
-          <th style="min-width:200px">定義（看什麼）</th>
-          <th style="min-width:180px">評分方式</th>
-          <th style="min-width:170px">為何重要</th>
-        </tr></thead>
-        <tbody>
-          <tr><td><b>未處理派單</b></td><td>現在有幾張派單卡在「已派單」沒人接</td><td>即時計數・紅色警示</td><td>掉單就是漏財，第一時間清零</td></tr>
-          <tr><td><b>漏斗轉換率</b></td><td>派單 → 報價 → 預約 的層層轉換</td><td>報價率／預約率／成交率（%）</td><td>看每一關流失多少、跟進做不做</td></tr>
-          <tr><td><b>首次回覆速度 ★</b></td><td>從派單到「首次回覆客戶」的時間</td><td>中位數／P90／截尾平均＋達標率</td><td>回得快＝服務體感好、成交機會高</td></tr>
-          <tr><td><b>回訊燈速度</b></td><td>結單客戶再回訊亮燈 → 店長處理的時間</td><td>回覆率＋達標率＋中位時效</td><td>老客戶追問沒接住＝口碑與回購流失</td></tr>
-          <tr><td><b>積壓待追</b></td><td>卡在已派單／已報價超過門檻沒動的單</td><td>≥7 天（≥30 天）即時快照</td><td>被晾著的客戶要主動追回</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="margin-top:clamp(12px,2vh,20px)"><span class="tag"><span class="dot a"></span>速度類指標「只累計營業時段」——不會因為客戶半夜或店休來訊就被扣分，公平比較</span></div>
-  </section>
-
-  <!-- 6e KPI conditions & formula -->
-  <section class="slide">
-    <div class="head">
-      <div class="eyebrow amber">評分條件與公式 · Scoring Formula</div>
-      <h2>分數，是這樣算出來的</h2>
-    </div>
+    <div class="head"><div class="eyebrow">KPI 指標 01 · Unhandled Dispatch</div><h2>⚠️ 未處理派單</h2></div>
     <div class="grid cols-2" style="align-items:start">
-      <div class="card">
-        <div class="k">⚡ 首次回覆速度 KPI</div>
-        <div class="d" style="margin-top:.45em;line-height:1.75">
-          時間<b style="color:var(--ink)">只累計各店營業時段</b>（扣打烊與週日店休）<br>
-          <b style="color:var(--echo)">達標率</b> ＝ 營業 60 分內回覆數 ÷ 派單數 ×100%<br>
-          <b>中位數</b>：排序取中間　<b>P90</b>：最慢 10% 的門檻<br>
-          <b>截尾平均</b>：去掉最快 10%＋最慢 10% 後平均
-        </div>
-      </div>
-      <div class="card amber">
-        <div class="k">🔻 漏斗轉換率</div>
-        <div class="d" style="margin-top:.45em;line-height:1.75">
-          報價 ＝ 已報價 ＋ 已預約　·　預約 ＝ 已預約<br>
-          <b style="color:var(--alert)">報價率</b> ＝ 報價 ÷ 派單<br>
-          <b style="color:var(--alert)">預約率</b> ＝ 預約 ÷ 報價<br>
-          <b style="color:var(--alert)">成交率</b> ＝ 預約 ÷ 派單（派單→預約）
-        </div>
-      </div>
-      <div class="card">
-        <div class="k">🔔 回訊燈 ＆ 📦 積壓</div>
-        <div class="d" style="margin-top:.45em;line-height:1.75">
-          回訊燈回覆率 ＝（亮燈－未處理）÷ 亮燈<br>
-          回訊燈達標率 ＝ 營業 60 分內處理 ÷ 亮燈<br>
-          積壓：卡在已派單／已報價 <b>≥7 天</b>（≥30 天）沒動＝該追
-        </div>
-      </div>
-      <div class="card">
-        <div class="k">🚦 燈號評分條件</div>
-        <div class="d" style="margin-top:.6em;display:flex;flex-direction:column;gap:.55em">
-          <span><span class="pill eval">綠 ≥ 80%</span>　優良，維持</span>
-          <span><span class="pill book">黃 50–79%</span>　待改善</span>
-          <span><span class="pill" style="background:#C0403E">紅 &lt; 50%</span>　需立即改善</span>
-        </div>
-      </div>
+      <div class="card"><div class="k">看什麼</div><div class="t">現在有幾張派單沒人接</div><div class="d">狀態卡在「已派單」還沒被店長接手處理的數量。統計頁最上方紅色卡即時顯示，各分店分開列出。</div></div>
+      <div class="card"><div class="k">為何重要</div><div class="t">掉單＝漏財</div><div class="d">客戶問了卻沒人理，是最傷的漏洞。這是唯一要「歸零」的指標——看到紅字就代表有人在等。</div></div>
     </div>
-    <div style="margin-top:clamp(10px,1.6vh,18px)"><span class="tag"><span class="dot"></span>達標門檻 60 分、燈號門檻都寫在系統裡，八家分店一致標準</span></div>
+    <div class="grid cols-2" style="margin-top:clamp(10px,1.6vh,18px);align-items:start">
+      <div class="card"><div class="k">評分方式</div><div class="d" style="margin-top:.4em;line-height:1.75">即時計數（非區間統計）<br>數字 ＝ 目前「已派單」未處理的張數<br>各分店分列，合計顯示在最上方</div></div>
+      <div class="card amber"><div class="k">評分條件</div><div class="d" style="margin-top:.4em;line-height:1.75">目標值 ＝ <b style="color:var(--ink)">0</b><br>＞0 即紅色警示，要立刻接手<br>搭配 Telegram 即時派單通知，不漏接</div></div>
+    </div>
+    <div style="margin-top:clamp(10px,1.6vh,18px)"><span class="tag"><span class="dot a"></span>其他指標是「做多好」，這一項是「有沒有漏」——先把它清零，再談品質</span></div>
   </section>
 
-  <!-- 6f KPI cases -->
+  <!-- 6e KPI 指標 02 漏斗轉換率 -->
   <section class="slide">
-    <div class="head">
-      <div class="eyebrow">案例說明 · 白話看懂評分</div>
-      <h2>四個實例，看分數怎麼跑</h2>
+    <div class="head"><div class="eyebrow">KPI 指標 02 · Conversion Funnel</div><h2>🔻 漏斗轉換率</h2></div>
+    <div class="grid cols-2" style="align-items:start">
+      <div class="card"><div class="k">看什麼</div><div class="t">派單 → 報價 → 預約，每關留幾成</div><div class="d">以區間內「曾被派單」的客戶為基底，看從詢問一路到成交，每一關流失多少。</div></div>
+      <div class="card"><div class="k">為何重要</div><div class="t">找出漏在哪一關</div><div class="d">報價率低＝沒把握機會給價；預約率低＝報了價卻沒跟進到店。數字告訴你該補哪一段。</div></div>
     </div>
-    <div class="grid cols-2">
-      <div class="card"><div class="k">案例 ①　達標 ✅</div><div class="t">士林店・首次回覆</div><div class="d">客戶 14:30 進線派單（營業中）→ 店長 14:50 送出報價＝營業 <b style="color:var(--echo)">20 分</b> ≤ 60 分 → 達標，計入達標率分子。</div></div>
-      <div class="card amber"><div class="k">案例 ②　只算營業分鐘 ⚖️</div><div class="t">週六打烊後派單</div><div class="d">士林店週六到 18:00。17:50 派單→當天只算 <b>10 分</b>；晚上與週日店休<b>不計</b>，週一 11:00 開店後續算——跨夜不背鍋。</div></div>
-      <div class="card"><div class="k">案例 ③　漏斗解讀 🔻</div><div class="t">某店：派單 20・報價 14・預約 7</div><div class="d">報價率 14/20＝<b>70%</b>、預約率 7/14＝<b>50%</b>、成交率 7/20＝<b style="color:var(--alert)">35%</b> → 報價後跟進可再拉高。</div></div>
-      <div class="card"><div class="k">案例 ④　回訊燈 🔔</div><div class="t">已報價客戶隔天再問</div><div class="d">結單客戶回訊 → 面板亮燈 → 店長營業 <b>40 分</b>內回覆＝達標；若拖著沒處理，計入回訊燈未處理與積壓。</div></div>
+    <div class="grid cols-2" style="margin-top:clamp(10px,1.6vh,18px);align-items:start">
+      <div class="card amber"><div class="k">評分公式</div><div class="d" style="margin-top:.4em;line-height:1.78">報價 ＝ 已報價 ＋ 已預約　·　預約 ＝ 已預約<br><b style="color:var(--alert)">報價率</b> ＝ 報價 ÷ 派單<br><b style="color:var(--alert)">預約率</b> ＝ 預約 ÷ 報價<br><b style="color:var(--alert)">成交率</b> ＝ 預約 ÷ 派單</div></div>
+      <div class="card"><div class="k">小範例</div><div class="d" style="margin-top:.4em;line-height:1.78">某店 派單 20・報價 14・預約 7<br>報價率 14/20 ＝ <b>70%</b><br>預約率 7/14 ＝ <b>50%</b><br>成交率 7/20 ＝ <b style="color:var(--alert)">35%</b></div></div>
     </div>
-    <div style="margin-top:clamp(12px,2vh,20px)"><span class="tag"><span class="dot g"></span>各店營業時間寫在系統（來源 tar-tw.com），全店週日店休；速度 KPI 一律以此為準</span></div>
+    <div style="margin-top:clamp(10px,1.6vh,18px)"><span class="tag"><span class="dot"></span>已評估／未成交屬其他分支，不列入此漏斗；只追「往成交推進」這條主線</span></div>
+  </section>
+
+  <!-- 6f KPI 指標 03 首次回覆速度 -->
+  <section class="slide">
+    <div class="head"><div class="eyebrow amber">KPI 指標 03 · First Response ★</div><h2>⚡ 首次回覆速度</h2></div>
+    <div class="grid cols-2" style="align-items:start">
+      <div class="card"><div class="k">看什麼</div><div class="t">接單後，多快回到客戶</div><div class="d">從「派單」到店長「首次回覆客戶」的時間。首次回覆＝面板回覆或送出報價（該次派單後第一次）。</div></div>
+      <div class="card"><div class="k">關鍵設計</div><div class="t">只算營業分鐘</div><div class="d">扣掉打烊時間與週日店休，跨夜、店休都不計——客戶半夜來訊不會害店長被扣分。</div></div>
+    </div>
+    <div class="grid cols-2" style="margin-top:clamp(10px,1.6vh,18px);align-items:start">
+      <div class="card amber"><div class="k">評分公式</div><div class="d" style="margin-top:.4em;line-height:1.78">達標 ＝ 營業 <b style="color:var(--ink)">60 分</b>內回覆<br><b style="color:var(--echo)">達標率</b> ＝ 達標數 ÷ 派單數 ×100%<br>中位數：排序取中間　P90：最慢 10% 門檻<br>截尾平均：去掉最快＋最慢各 10% 後平均</div></div>
+      <div class="card"><div class="k">燈號條件</div><div class="d" style="margin-top:.55em;display:flex;flex-direction:column;gap:.5em"><span><span class="pill eval">綠 ≥ 80%</span> 優良</span><span><span class="pill book">黃 50–79%</span> 待改善</span><span><span class="pill" style="background:#C0403E">紅 &lt; 50%</span> 需立即改善</span></div></div>
+    </div>
+    <div style="margin-top:clamp(10px,1.6vh,18px)"><span class="tag"><span class="dot"></span>最能反映服務體感的核心指標：回得快，客戶就覺得被在乎、成交機會也高</span></div>
+  </section>
+
+  <!-- 6g KPI 指標 04 回訊燈回覆速度 -->
+  <section class="slide">
+    <div class="head"><div class="eyebrow">KPI 指標 04 · Re-message Light</div><h2>🔔 回訊燈回覆速度</h2></div>
+    <div class="grid cols-2" style="align-items:start">
+      <div class="card"><div class="k">看什麼</div><div class="t">老客戶再問，多快接住</div><div class="d">結單客戶（已報價／已預約／已評估）再回訊 → 面板亮「回訊」燈 → 店長從亮燈到處理（回覆／消除）的時間。</div></div>
+      <div class="card"><div class="k">為何重要</div><div class="t">回購與口碑的關鍵</div><div class="d">已經談過的客戶又主動回來，是最熱的機會；沒接住＝白白流失，還傷口碑。</div></div>
+    </div>
+    <div class="grid cols-2" style="margin-top:clamp(10px,1.6vh,18px);align-items:start">
+      <div class="card amber"><div class="k">評分公式</div><div class="d" style="margin-top:.4em;line-height:1.78">同樣只累計營業分鐘，達標＝營業 60 分內<br><b style="color:var(--echo)">回覆率</b> ＝（亮燈 － 未處理）÷ 亮燈<br><b style="color:var(--echo)">達標率</b> ＝ 60 分內處理 ÷ 亮燈<br>另看中位時效／P90</div></div>
+      <div class="card"><div class="k">小範例</div><div class="d" style="margin-top:.4em;line-height:1.78">已報價客戶隔天再問一句<br>→ 面板亮回訊燈<br>→ 店長營業 <b>40 分</b>內回覆<br>＝ 達標；拖著沒處理則計入未處理與積壓</div></div>
+    </div>
+    <div style="margin-top:clamp(10px,1.6vh,18px)"><span class="tag"><span class="dot g"></span>燈號門檻與首次回覆一致：綠 ≥80%／黃 50–79%／紅 &lt;50%</span></div>
+  </section>
+
+  <!-- 6h KPI 指標 05 積壓待追 -->
+  <section class="slide">
+    <div class="head"><div class="eyebrow amber">KPI 指標 05 · Backlog</div><h2>📦 積壓待追</h2></div>
+    <div class="grid cols-2" style="align-items:start">
+      <div class="card"><div class="k">看什麼</div><div class="t">誰被晾著太久</div><div class="d">目前卡在「已派單／已報價」且超過門檻沒動的客戶。即時快照，反映「現在誰該被追回」，與區間無關。</div></div>
+      <div class="card"><div class="k">為何重要</div><div class="t">被晾著的都是待撈回的錢</div><div class="d">報了價沒下文、派了單沒跟進，最容易流失；主動追一句，常常就回來了。</div></div>
+    </div>
+    <div class="grid cols-2" style="margin-top:clamp(10px,1.6vh,18px);align-items:start">
+      <div class="card amber"><div class="k">評分條件</div><div class="d" style="margin-top:.4em;line-height:1.78">停滯依<b style="color:var(--ink)">最後更新時間</b><br>已派單／已報價卡 <b>≥7 天</b>沒動 ＝ 該追<br>卡 ≥30 天 ＝ 更嚴重<br>派單未回覆：另計（≥3 天特別標記）</div></div>
+      <div class="card"><div class="k">小範例</div><div class="d" style="margin-top:.4em;line-height:1.78">某客戶「已報價」後 8 天沒任何互動<br>→ 出現在「已報價積壓 ≥7 天」<br>→ 店長主動私訊追一句，把他撈回漏斗</div></div>
+    </div>
+    <div style="margin-top:clamp(10px,1.6vh,18px)"><span class="tag"><span class="dot a"></span>其他指標看「過去表現」，這一項看「現在誰在等」——每天掃一次，清掉積壓</span></div>
+  </section>
+
+  <!-- 6i KPI 綜合範例 -->
+  <section class="slide">
+    <div class="head"><div class="eyebrow">綜合範例 · 一位客戶跑完全程</div><h2>同一位客戶，五個 KPI 怎麼連動</h2></div>
+    <div style="display:flex;flex-direction:column;gap:clamp(7px,1.15vh,12px)">
+      <div class="exrow"><span class="ext">週三 14:30</span><span class="exd">客戶 LINE 問門板凹痕，ECHO 收齊資料自動派單台北士林店</span><span class="pill dispatch">未處理派單 ＋1</span></div>
+      <div class="exrow"><span class="ext">週三 14:50</span><span class="exd">店長在操作中心送出報價（營業 20 分）</span><span class="pill eval">首次回覆 達標 ✅・未處理歸零</span></div>
+      <div class="exrow"><span class="ext">週三 14:50</span><span class="exd">客戶狀態推進為「已報價」</span><span class="pill quote">漏斗：進入報價</span></div>
+      <div class="exrow"><span class="ext">週六 到店</span><span class="exd">客戶依約到店，狀態推進為「已預約／成交」</span><span class="pill book">漏斗：成交 ✅</span></div>
+      <div class="exrow"><span class="ext">次週</span><span class="exd">客戶再回訊問後續保養，面板亮回訊燈，店長營業 40 分內回覆</span><span class="pill eval">回訊燈 達標 ✅</span></div>
+      <div class="exrow"><span class="ext">對照組</span><span class="exd">若報價後客戶沒回、店長也沒追，第 8 天沒任何互動</span><span class="pill" style="background:#C0403E">積壓 ≥7 天 → 主動追回</span></div>
+    </div>
+    <div style="margin-top:clamp(10px,1.7vh,18px)"><span class="tag"><span class="dot g"></span>一條龍：每一步系統都記成數字，店長只要盯著「未處理／燈號／積壓」，把每位客戶往前推</span></div>
   </section>
 
   <!-- 7 Mindset statement -->
