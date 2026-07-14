@@ -454,6 +454,9 @@
   .tl .seg.closed{background:repeating-linear-gradient(45deg,#1c232d,#1c232d 7px,#141a22 7px,#141a22 14px);color:var(--dim)}
   .tl .seg.closed small{color:var(--dim)}
   .exsum{margin-top:8px;font-size:clamp(12px,1.2vw,16px);color:var(--ink);font-weight:700}
+  .tl .seg.over{background:rgba(224,58,70,.16);color:var(--ink)}
+  .tl .seg.over small{color:#F0A9AE}
+  .tllegend i.lg.over{background:rgba(224,58,70,.32);border:1px solid #E23A46}
 </style>
 </head>
 <body>
@@ -790,6 +793,7 @@
     <div class="tllegend">
       <span><i class="lg open"></i>營業時段（計入）</span>
       <span><i class="lg closed"></i>打烊・週日店休（不計）</span>
+      <span><i class="lg over"></i>超過門檻・未達標</span>
       <span><span class="pill dispatch">派單</span>起算點</span>
       <span><span class="pill eval">首次回覆</span>結束點</span>
       <span>達標門檻 ＝ 營業 <b style="color:var(--echo)">60 分</b>內</span>
@@ -813,6 +817,14 @@
       <div class="exsum">營業分鐘 ＝ 10 ＋ 20 ＝ <b style="color:var(--echo)">30 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b>　<span style="color:var(--mut);font-weight:600">（實際隔了兩天，但打烊與店休都不算，店長不背鍋）</span></div>
     </div>
 
+    <div class="excase">
+      <div class="excap">情況 C · 回太慢（未達標）　<span class="pill dispatch">派單</span> 週四 15:00　→　<span class="pill eval">首次回覆</span> 週四 16:40</div>
+      <div class="tl">
+        <div class="seg open" style="flex:1.5">週四 15:00–16:00<br><small>營業 · 前 60 分（門檻內）</small></div>
+        <div class="seg over" style="flex:1">週四 16:00–16:40<br><small>營業 · 超時 ＋40 分</small></div>
+      </div>
+      <div class="exsum">營業分鐘 ＝ 100 分 &gt; 60 → <b style="color:#FF6B72">未達標 ❌</b>　<span style="color:var(--mut);font-weight:600">（全程營業中、純粹回太慢；此案不計入達標率分子，會拉低達標率）</span></div>
+    </div>
     <div style="margin-top:clamp(8px,1.4vh,16px)"><span class="tag"><span class="dot"></span>公平原則：客戶半夜、店休來訊，時間都不列入——只比「營業時間內你多快回」</span></div>
   </section>
 
