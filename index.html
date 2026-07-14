@@ -468,6 +468,43 @@
   .tlmark .mk.r::after{right:4px;background:#2FA85C}
   .excase{margin-bottom:clamp(8px,1.5vh,15px)}
   .tl{height:clamp(44px,6.6vh,62px)}
+  .tlwrap{position:relative;margin-top:clamp(28px,4vh,40px)}
+  .pin{position:absolute;top:0;bottom:0;width:0;z-index:4}
+  .pin.start{left:0}
+  .pin.end{right:0}
+  .pin::before{content:"";position:absolute;top:calc(-1*clamp(24px,3.6vh,36px));height:calc(clamp(24px,3.6vh,36px) + 50%);width:2px}
+  .pin.start::before{left:0;background:#5B7BD6}
+  .pin.end::before{right:0;background:#4CC47E}
+  .pin::after{content:"";position:absolute;top:50%;width:14px;height:14px;border-radius:50%;border:2px solid #0E1116;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+  .pin.start::after{left:0;transform:translate(-50%,-50%);background:#3E63C0}
+  .pin.end::after{right:0;transform:translate(50%,-50%);background:#2FA85C}
+  .pin .lb{position:absolute;top:calc(-1*clamp(24px,3.6vh,36px));transform:translateY(-100%);white-space:nowrap;font-size:clamp(11px,1.03vw,13.5px);font-weight:700;color:var(--ink);background:var(--surface2);border:1px solid var(--line2);border-radius:7px;padding:3px 10px}
+  .pin .lb b{font-weight:800}
+  .pin.start .lb{left:-1px}
+  .pin.end .lb{right:-1px}
+  .tllegend i.lg.pind{width:12px;height:12px;border-radius:50%;background:#3E63C0;border:2px solid #0E1116;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+  .tllegend i.lg.pinr{width:12px;height:12px;border-radius:50%;background:#2FA85C;border:2px solid #0E1116;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+  .excases{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vh,34px) clamp(22px,2.6vw,42px);margin-top:clamp(4px,1vh,10px)}
+  .excases .excase{margin-bottom:0}
+  .excases .excap{font-size:clamp(12px,1.12vw,15px);color:var(--mut);margin-bottom:0;font-weight:800}
+  .excases .tlwrap{position:relative;margin-top:clamp(46px,6vh,56px)}
+  .excases .tl{height:clamp(40px,5.4vh,54px)}
+  .excases .exsum{margin-top:8px;font-size:clamp(11px,1.06vw,14px)}
+  .pin{position:absolute;top:0;bottom:0;width:0;z-index:4}
+  .pin.start{left:0}
+  .pin.end{right:0}
+  .pin::before{content:"";position:absolute;top:calc(-1*clamp(22px,3vh,30px));height:calc(clamp(22px,3vh,30px) + 50%);width:2px}
+  .pin.start::before{left:0;background:#5B7BD6}
+  .pin.end::before{right:0;background:#4CC47E}
+  .pin::after{content:"";position:absolute;top:50%;width:14px;height:14px;border-radius:50%;border:2px solid #0E1116;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+  .pin.start::after{left:0;transform:translate(-50%,-50%);background:#3E63C0}
+  .pin.end::after{right:0;transform:translate(50%,-50%);background:#2FA85C}
+  .pin .lb{position:absolute;top:calc(-1*clamp(22px,3vh,30px));transform:translateY(-100%);white-space:nowrap;font-size:clamp(10.5px,1vw,13px);font-weight:700;color:var(--ink);background:var(--surface2);border:1px solid var(--line2);border-radius:7px;padding:2px 9px}
+  .pin .lb b{font-weight:800}
+  .pin.start .lb{left:-1px}
+  .pin.end .lb{right:-1px}
+  .tllegend i.lg.pind{width:12px;height:12px;border-radius:50%;background:#3E63C0;border:2px solid #0E1116;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+  .tllegend i.lg.pinr{width:12px;height:12px;border-radius:50%;background:#2FA85C;border:2px solid #0E1116;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
 </style>
 </head>
 <body>
@@ -805,50 +842,61 @@
       <span><i class="lg open"></i>營業時段（計入）</span>
       <span><i class="lg closed"></i>打烊・週日店休（不計）</span>
       <span><i class="lg over"></i>超過門檻・未達標</span>
-      <span><span class="pill dispatch">派單</span>起算點</span>
-      <span><span class="pill eval">首次回覆</span>結束點</span>
+      <span><i class="lg pind"></i>派單（起算）</span>
+      <span><i class="lg pinr"></i>首次回覆（結束）</span>
       <span>達標門檻 ＝ 營業 <b style="color:var(--echo)">60 分</b>內</span>
     </div>
 
-    <div class="excase">
-      <div class="excap">情況 A · 營業中回覆</div>
-      <div class="tlmark">
-        <span class="mk d"><span class="dotm"></span><b>派單</b> 週三 14:30</span>
-        <span class="mk r">週三 14:50 <b>首次回覆</b><span class="dotm"></span></span>
+    <div class="excases">
+      <div class="excase">
+        <div class="excap">情況 A · 營業中回覆</div>
+        <div class="tlwrap">
+          <span class="pin start"><span class="lb"><b>派單</b> 週三 14:30</span></span>
+          <div class="tl"><div class="seg open" style="flex:1">週三 14:30 – 14:50<br><small>營業中 · 計 ＋20 分</small></div></div>
+          <span class="pin end"><span class="lb">週三 14:50 <b>首次回覆</b></span></span>
+        </div>
+        <div class="exsum">營業分鐘 ＝ <b style="color:var(--echo)">20 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b></div>
       </div>
-      <div class="tl">
-        <div class="seg open" style="flex:1">週三 14:30 – 14:50<br><small>營業中 · 計 ＋20 分</small></div>
+
+      <div class="excase">
+        <div class="excap">情況 B · 跨打烊＋週日店休</div>
+        <div class="tlwrap">
+          <span class="pin start"><span class="lb"><b>派單</b> 週六 17:50</span></span>
+          <div class="tl">
+            <div class="seg open" style="flex:1">週六 17:50–18:00<br><small>營業 · ＋10 分</small></div>
+            <div class="seg closed" style="flex:1.7">週六打烊 → 週日店休<br><small>不計入</small></div>
+            <div class="seg open" style="flex:1.2">週一 11:00–11:20<br><small>營業 · ＋20 分</small></div>
+          </div>
+          <span class="pin end"><span class="lb">週一 11:20 <b>首次回覆</b></span></span>
+        </div>
+        <div class="exsum">營業分鐘 ＝ 10 ＋ 20 ＝ <b style="color:var(--echo)">30 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b>　<span style="color:var(--mut);font-weight:600">（跨兩天，但打烊／店休不算）</span></div>
       </div>
-      <div class="exsum">營業分鐘 ＝ <b style="color:var(--echo)">20 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b></div>
+
+      <div class="excase">
+        <div class="excap">情況 C · 回太慢（未達標）</div>
+        <div class="tlwrap">
+          <span class="pin start"><span class="lb"><b>派單</b> 週四 15:00</span></span>
+          <div class="tl">
+            <div class="seg open" style="flex:1.5">週四 15:00–16:00<br><small>營業 · 前 60 分（門檻內）</small></div>
+            <div class="seg over" style="flex:1">週四 16:00–16:40<br><small>營業 · 超時 ＋40 分</small></div>
+          </div>
+          <span class="pin end"><span class="lb">週四 16:40 <b>首次回覆</b></span></span>
+        </div>
+        <div class="exsum">營業分鐘 ＝ 100 分 &gt; 60 → <b style="color:#FF6B72">未達標 ❌</b>　<span style="color:var(--mut);font-weight:600">（純粹回太慢，拉低達標率）</span></div>
+      </div>
+
+      <div class="excase">
+        <div class="excap">情況 D · 營業外派單、營業外回覆</div>
+        <div class="tlwrap">
+          <span class="pin start"><span class="lb"><b>派單</b> 週四 21:00</span></span>
+          <div class="tl"><div class="seg closed" style="flex:1">週四 21:00 – 21:30　打烊後<br><small>全程營業外 · 不計入</small></div></div>
+          <span class="pin end"><span class="lb">週四 21:30 <b>首次回覆</b></span></span>
+        </div>
+        <div class="exsum">營業分鐘 ＝ <b style="color:var(--echo)">0 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b>　<span style="color:var(--mut);font-weight:600">（打烊後主動回，營業外不計；跨到營業日才累計）</span></div>
+      </div>
     </div>
 
-    <div class="excase">
-      <div class="excap">情況 B · 跨打烊＋週日店休</div>
-      <div class="tlmark">
-        <span class="mk d"><span class="dotm"></span><b>派單</b> 週六 17:50</span>
-        <span class="mk r">週一 11:20 <b>首次回覆</b><span class="dotm"></span></span>
-      </div>
-      <div class="tl">
-        <div class="seg open" style="flex:1">週六 17:50–18:00<br><small>營業 · 計 ＋10 分</small></div>
-        <div class="seg closed" style="flex:1.7">週六打烊 → 週日店休<br><small>不計入</small></div>
-        <div class="seg open" style="flex:1.2">週一 11:00–11:20<br><small>營業 · 計 ＋20 分</small></div>
-      </div>
-      <div class="exsum">營業分鐘 ＝ 10 ＋ 20 ＝ <b style="color:var(--echo)">30 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b>　<span style="color:var(--mut);font-weight:600">（實際隔了兩天，但打烊與店休都不算，店長不背鍋）</span></div>
-    </div>
-
-    <div class="excase">
-      <div class="excap">情況 C · 回太慢（未達標）</div>
-      <div class="tlmark">
-        <span class="mk d"><span class="dotm"></span><b>派單</b> 週四 15:00</span>
-        <span class="mk r">週四 16:40 <b>首次回覆</b><span class="dotm"></span></span>
-      </div>
-      <div class="tl">
-        <div class="seg open" style="flex:1.5">週四 15:00–16:00<br><small>營業 · 前 60 分（門檻內）</small></div>
-        <div class="seg over" style="flex:1">週四 16:00–16:40<br><small>營業 · 超時 ＋40 分</small></div>
-      </div>
-      <div class="exsum">營業分鐘 ＝ 100 分 &gt; 60 → <b style="color:#FF6B72">未達標 ❌</b>　<span style="color:var(--mut);font-weight:600">（全程營業中、純粹回太慢；此案不計入達標率分子，會拉低達標率）</span></div>
-    </div>
-    <div style="margin-top:clamp(8px,1.4vh,16px)"><span class="tag"><span class="dot"></span>公平原則：客戶半夜、店休來訊，時間都不列入——只比「營業時間內你多快回」</span></div>
+    <div style="margin-top:clamp(6px,1.1vh,12px)"><span class="tag"><span class="dot"></span>公平原則：只計「營業時間內」的分鐘——營業外派單／回覆都不列入，比的是開門時你多快回</span></div>
   </section>
 
   <!-- 6g KPI 指標 04 回訊燈回覆速度 -->
