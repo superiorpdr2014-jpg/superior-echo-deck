@@ -457,6 +457,17 @@
   .tl .seg.over{background:rgba(224,58,70,.16);color:var(--ink)}
   .tl .seg.over small{color:#F0A9AE}
   .tllegend i.lg.over{background:rgba(224,58,70,.32);border:1px solid #E23A46}
+  .tlmark{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:0}
+  .tlmark .mk{position:relative;padding-bottom:9px;font-size:clamp(11px,1.05vw,14px);font-weight:700;color:var(--ink);display:inline-flex;align-items:center;gap:6px}
+  .tlmark .mk b{font-weight:800}
+  .tlmark .mk .dotm{width:9px;height:9px;border-radius:50%;flex:0 0 auto}
+  .tlmark .mk.d .dotm{background:#3E63C0}
+  .tlmark .mk.r .dotm{background:#2FA85C}
+  .tlmark .mk::after{content:"";position:absolute;bottom:0;width:2px;height:8px;border-radius:1px}
+  .tlmark .mk.d::after{left:4px;background:#3E63C0}
+  .tlmark .mk.r::after{right:4px;background:#2FA85C}
+  .excase{margin-bottom:clamp(8px,1.5vh,15px)}
+  .tl{height:clamp(44px,6.6vh,62px)}
 </style>
 </head>
 <body>
@@ -800,7 +811,11 @@
     </div>
 
     <div class="excase">
-      <div class="excap">情況 A · 營業中回覆　<span class="pill dispatch">派單</span> 週三 14:30　→　<span class="pill eval">首次回覆</span> 週三 14:50</div>
+      <div class="excap">情況 A · 營業中回覆</div>
+      <div class="tlmark">
+        <span class="mk d"><span class="dotm"></span><b>派單</b> 週三 14:30</span>
+        <span class="mk r">週三 14:50 <b>首次回覆</b><span class="dotm"></span></span>
+      </div>
       <div class="tl">
         <div class="seg open" style="flex:1">週三 14:30 – 14:50<br><small>營業中 · 計 ＋20 分</small></div>
       </div>
@@ -808,7 +823,11 @@
     </div>
 
     <div class="excase">
-      <div class="excap">情況 B · 跨打烊＋週日店休　<span class="pill dispatch">派單</span> 週六 17:50　→　<span class="pill eval">首次回覆</span> 週一 11:20</div>
+      <div class="excap">情況 B · 跨打烊＋週日店休</div>
+      <div class="tlmark">
+        <span class="mk d"><span class="dotm"></span><b>派單</b> 週六 17:50</span>
+        <span class="mk r">週一 11:20 <b>首次回覆</b><span class="dotm"></span></span>
+      </div>
       <div class="tl">
         <div class="seg open" style="flex:1">週六 17:50–18:00<br><small>營業 · 計 ＋10 分</small></div>
         <div class="seg closed" style="flex:1.7">週六打烊 → 週日店休<br><small>不計入</small></div>
@@ -818,7 +837,11 @@
     </div>
 
     <div class="excase">
-      <div class="excap">情況 C · 回太慢（未達標）　<span class="pill dispatch">派單</span> 週四 15:00　→　<span class="pill eval">首次回覆</span> 週四 16:40</div>
+      <div class="excap">情況 C · 回太慢（未達標）</div>
+      <div class="tlmark">
+        <span class="mk d"><span class="dotm"></span><b>派單</b> 週四 15:00</span>
+        <span class="mk r">週四 16:40 <b>首次回覆</b><span class="dotm"></span></span>
+      </div>
       <div class="tl">
         <div class="seg open" style="flex:1.5">週四 15:00–16:00<br><small>營業 · 前 60 分（門檻內）</small></div>
         <div class="seg over" style="flex:1">週四 16:00–16:40<br><small>營業 · 超時 ＋40 分</small></div>
