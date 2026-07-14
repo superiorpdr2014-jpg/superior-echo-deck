@@ -438,6 +438,22 @@
   .exrow .exd{flex:1;font-size:clamp(12px,1.2vw,16px);color:var(--ink)}
   .exrow .pill{flex:0 0 auto;font-size:clamp(10px,1vw,12.5px)}
   @media(max-width:640px){ .exrow{flex-wrap:wrap} .exrow .exd{flex:1 1 100%;order:3} }
+  .tllegend{display:flex;flex-wrap:wrap;gap:clamp(10px,1.6vw,22px);align-items:center;margin-bottom:clamp(12px,2vh,20px);font-size:clamp(11px,1.05vw,14px);color:var(--mut);font-weight:700}
+  .tllegend i.lg{display:inline-block;width:24px;height:13px;border-radius:3px;vertical-align:middle;margin-right:6px}
+  .tllegend i.lg.open{background:rgba(56,211,200,.30);border:1px solid var(--echo)}
+  .tllegend i.lg.closed{background:repeating-linear-gradient(45deg,#1c232d,#1c232d 5px,#141a22 5px,#141a22 10px);border:1px solid var(--line2)}
+  .tllegend .pill{margin-right:5px;font-size:clamp(10px,.95vw,12px)}
+  .excase{margin-bottom:clamp(12px,2vh,20px)}
+  .excap{font-size:clamp(12px,1.15vw,15.5px);color:var(--mut);margin-bottom:8px;font-weight:700}
+  .excap .pill{margin:0 3px;font-size:clamp(10px,.95vw,12px)}
+  .tl{display:flex;align-items:stretch;height:clamp(50px,7.6vh,72px);border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+  .tl .seg{display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:clamp(10px,1vw,13px);font-weight:800;color:var(--ink);padding:4px 8px;text-align:center;line-height:1.25;border-right:1px solid rgba(0,0,0,.3)}
+  .tl .seg:last-child{border-right:none}
+  .tl .seg small{font-weight:600;color:var(--mut);font-size:.82em}
+  .tl .seg.open{background:rgba(56,211,200,.16)}
+  .tl .seg.closed{background:repeating-linear-gradient(45deg,#1c232d,#1c232d 7px,#141a22 7px,#141a22 14px);color:var(--dim)}
+  .tl .seg.closed small{color:var(--dim)}
+  .exsum{margin-top:8px;font-size:clamp(12px,1.2vw,16px);color:var(--ink);font-weight:700}
 </style>
 </head>
 <body>
@@ -765,6 +781,39 @@
       <div class="card"><div class="k">燈號條件</div><div class="d" style="margin-top:.55em;display:flex;flex-direction:column;gap:.5em"><span><span class="pill eval">綠 ≥ 80%</span> 優良</span><span><span class="pill book">黃 50–79%</span> 待改善</span><span><span class="pill" style="background:#C0403E">紅 &lt; 50%</span> 需立即改善</span></div></div>
     </div>
     <div style="margin-top:clamp(10px,1.6vh,18px)"><span class="tag"><span class="dot"></span>最能反映服務體感的核心指標：回得快，客戶就覺得被在乎、成交機會也高</span></div>
+  </section>
+
+  <!-- 6f2 首次回覆速度 單獨範例 + 圖例 -->
+  <section class="slide">
+    <div class="head"><div class="eyebrow amber">KPI 指標 03 · 首次回覆速度 · 範例與圖例</div><h2>⚡ 首次回覆時間，是怎麼數的</h2></div>
+
+    <div class="tllegend">
+      <span><i class="lg open"></i>營業時段（計入）</span>
+      <span><i class="lg closed"></i>打烊・週日店休（不計）</span>
+      <span><span class="pill dispatch">派單</span>起算點</span>
+      <span><span class="pill eval">首次回覆</span>結束點</span>
+      <span>達標門檻 ＝ 營業 <b style="color:var(--echo)">60 分</b>內</span>
+    </div>
+
+    <div class="excase">
+      <div class="excap">情況 A · 營業中回覆　<span class="pill dispatch">派單</span> 週三 14:30　→　<span class="pill eval">首次回覆</span> 週三 14:50</div>
+      <div class="tl">
+        <div class="seg open" style="flex:1">週三 14:30 – 14:50<br><small>營業中 · 計 ＋20 分</small></div>
+      </div>
+      <div class="exsum">營業分鐘 ＝ <b style="color:var(--echo)">20 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b></div>
+    </div>
+
+    <div class="excase">
+      <div class="excap">情況 B · 跨打烊＋週日店休　<span class="pill dispatch">派單</span> 週六 17:50　→　<span class="pill eval">首次回覆</span> 週一 11:20</div>
+      <div class="tl">
+        <div class="seg open" style="flex:1">週六 17:50–18:00<br><small>營業 · 計 ＋10 分</small></div>
+        <div class="seg closed" style="flex:1.7">週六打烊 → 週日店休<br><small>不計入</small></div>
+        <div class="seg open" style="flex:1.2">週一 11:00–11:20<br><small>營業 · 計 ＋20 分</small></div>
+      </div>
+      <div class="exsum">營業分鐘 ＝ 10 ＋ 20 ＝ <b style="color:var(--echo)">30 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b>　<span style="color:var(--mut);font-weight:600">（實際隔了兩天，但打烊與店休都不算，店長不背鍋）</span></div>
+    </div>
+
+    <div style="margin-top:clamp(8px,1.4vh,16px)"><span class="tag"><span class="dot"></span>公平原則：客戶半夜、店休來訊，時間都不列入——只比「營業時間內你多快回」</span></div>
   </section>
 
   <!-- 6g KPI 指標 04 回訊燈回覆速度 -->
