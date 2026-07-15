@@ -505,6 +505,12 @@
   .pin.end .lb{right:-1px}
   .tllegend i.lg.pind{width:12px;height:12px;border-radius:50%;background:#3E63C0;border:2px solid #0E1116;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
   .tllegend i.lg.pinr{width:12px;height:12px;border-radius:50%;background:#2FA85C;border:2px solid #0E1116;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+  .excol .excase{margin-bottom:clamp(20px,3.6vh,40px)}
+  .excol .excase:last-child{margin-bottom:0}
+  .excol .excap{font-size:clamp(12px,1.2vw,16px);color:var(--mut);margin-bottom:0;font-weight:800}
+  .excol .tlwrap{position:relative;margin-top:clamp(48px,6.4vh,60px)}
+  .excol .tl{height:clamp(48px,7vh,64px)}
+  .excol .exsum{margin-top:9px;font-size:clamp(12px,1.22vw,16px)}
 </style>
 </head>
 <body>
@@ -834,10 +840,9 @@
     <div style="margin-top:clamp(10px,1.6vh,18px)"><span class="tag"><span class="dot"></span>最能反映服務體感的核心指標：回得快，客戶就覺得被在乎、成交機會也高</span></div>
   </section>
 
-  <!-- 6f2 首次回覆速度 單獨範例 + 圖例 -->
+  <!-- 6f2 首次回覆速度 範例 (1/2) -->
   <section class="slide">
-    <div class="head"><div class="eyebrow amber">KPI 指標 03 · 首次回覆速度 · 範例與圖例</div><h2>⚡ 首次回覆時間，是怎麼數的</h2></div>
-
+    <div class="head"><div class="eyebrow amber">KPI 指標 03 · 首次回覆速度 · 範例與圖例 ①</div><h2>⚡ 首次回覆時間，是怎麼數的</h2></div>
     <div class="tllegend">
       <span><i class="lg open"></i>營業時段（計入）</span>
       <span><i class="lg closed"></i>打烊・週日店休（不計）</span>
@@ -846,8 +851,7 @@
       <span><i class="lg pinr"></i>首次回覆（結束）</span>
       <span>達標門檻 ＝ 營業 <b style="color:var(--echo)">60 分</b>內</span>
     </div>
-
-    <div class="excases">
+    <div class="excol">
       <div class="excase">
         <div class="excap">情況 A · 營業中回覆</div>
         <div class="tlwrap">
@@ -857,21 +861,35 @@
         </div>
         <div class="exsum">營業分鐘 ＝ <b style="color:var(--echo)">20 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b></div>
       </div>
-
       <div class="excase">
         <div class="excap">情況 B · 跨打烊＋週日店休</div>
         <div class="tlwrap">
           <span class="pin start"><span class="lb"><b>派單</b> 週六 17:50</span></span>
           <div class="tl">
-            <div class="seg open" style="flex:1">週六 17:50–18:00<br><small>營業 · ＋10 分</small></div>
+            <div class="seg open" style="flex:1">週六 17:50–18:00<br><small>營業 · 計 ＋10 分</small></div>
             <div class="seg closed" style="flex:1.7">週六打烊 → 週日店休<br><small>不計入</small></div>
-            <div class="seg open" style="flex:1.2">週一 11:00–11:20<br><small>營業 · ＋20 分</small></div>
+            <div class="seg open" style="flex:1.2">週一 11:00–11:20<br><small>營業 · 計 ＋20 分</small></div>
           </div>
           <span class="pin end"><span class="lb">週一 11:20 <b>首次回覆</b></span></span>
         </div>
-        <div class="exsum">營業分鐘 ＝ 10 ＋ 20 ＝ <b style="color:var(--echo)">30 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b>　<span style="color:var(--mut);font-weight:600">（跨兩天，但打烊／店休不算）</span></div>
+        <div class="exsum">營業分鐘 ＝ 10 ＋ 20 ＝ <b style="color:var(--echo)">30 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b>　<span style="color:var(--mut);font-weight:600">（實際隔了兩天，但打烊與店休都不算，店長不背鍋）</span></div>
       </div>
+    </div>
+    <div style="margin-top:clamp(8px,1.6vh,18px)"><span class="tag"><span class="dot"></span>公平原則：只計「營業時間內」的分鐘——打烊、店休都不算，比的是開門時你多快回</span></div>
+  </section>
 
+  <!-- 6f3 首次回覆速度 範例 (2/2) -->
+  <section class="slide">
+    <div class="head"><div class="eyebrow amber">KPI 指標 03 · 首次回覆速度 · 範例與圖例 ②</div><h2>⚡ 未達標 與 營業外 的算法</h2></div>
+    <div class="tllegend">
+      <span><i class="lg open"></i>營業時段（計入）</span>
+      <span><i class="lg closed"></i>打烊・週日店休（不計）</span>
+      <span><i class="lg over"></i>超過門檻・未達標</span>
+      <span><i class="lg pind"></i>派單（起算）</span>
+      <span><i class="lg pinr"></i>首次回覆（結束）</span>
+      <span>達標門檻 ＝ 營業 <b style="color:var(--echo)">60 分</b>內</span>
+    </div>
+    <div class="excol">
       <div class="excase">
         <div class="excap">情況 C · 回太慢（未達標）</div>
         <div class="tlwrap">
@@ -882,9 +900,8 @@
           </div>
           <span class="pin end"><span class="lb">週四 16:40 <b>首次回覆</b></span></span>
         </div>
-        <div class="exsum">營業分鐘 ＝ 100 分 &gt; 60 → <b style="color:#FF6B72">未達標 ❌</b>　<span style="color:var(--mut);font-weight:600">（純粹回太慢，拉低達標率）</span></div>
+        <div class="exsum">營業分鐘 ＝ 100 分 &gt; 60 → <b style="color:#FF6B72">未達標 ❌</b>　<span style="color:var(--mut);font-weight:600">（全程營業中、純粹回太慢；不計入達標率分子，會拉低達標率）</span></div>
       </div>
-
       <div class="excase">
         <div class="excap">情況 D · 營業外派單、營業外回覆</div>
         <div class="tlwrap">
@@ -892,11 +909,10 @@
           <div class="tl"><div class="seg closed" style="flex:1">週四 21:00 – 21:30　打烊後<br><small>全程營業外 · 不計入</small></div></div>
           <span class="pin end"><span class="lb">週四 21:30 <b>首次回覆</b></span></span>
         </div>
-        <div class="exsum">營業分鐘 ＝ <b style="color:var(--echo)">0 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b>　<span style="color:var(--mut);font-weight:600">（打烊後主動回，營業外不計；跨到營業日才累計）</span></div>
+        <div class="exsum">營業分鐘 ＝ <b style="color:var(--echo)">0 分</b> ≤ 60 → <b style="color:var(--echo)">達標 ✅</b>　<span style="color:var(--mut);font-weight:600">（打烊後主動回，營業外不計；跨到營業日才開始累計）</span></div>
       </div>
     </div>
-
-    <div style="margin-top:clamp(6px,1.1vh,12px)"><span class="tag"><span class="dot"></span>公平原則：只計「營業時間內」的分鐘——營業外派單／回覆都不列入，比的是開門時你多快回</span></div>
+    <div style="margin-top:clamp(8px,1.6vh,18px)"><span class="tag"><span class="dot a"></span>回太慢＝超過 60 營業分鐘才算未達標；營業外的時間一律不列入，不會倒扣店長</span></div>
   </section>
 
   <!-- 6g KPI 指標 04 回訊燈回覆速度 -->
